@@ -25,7 +25,6 @@ compile-text = "texttools.cli:compile_cli"
 validate-text = "texttools.cli:validate_cli"
 
 [tool.setuptools.packages.find]
-include = ["texttools"]
 
 [tool.ruff]
 select = ["E", "F", "W", "I"]
