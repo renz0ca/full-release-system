@@ -1,0 +1,28 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  texttools_cli:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11.5'
+    # - name: Configure Enivronment
+    #   run: |
+    #     python -m venv venv
+    #     source ./venv/bin/activate
+    - name: Install CLI
+      run: |
+        pip install "./cli"
+        pip list -v
+    - name: Test Tools
+      run: |
+        validate-text -t "1233 asdasd"
+        validate-text -t "1233asdasd"
+        compile-text -t "1234 asdasd"
