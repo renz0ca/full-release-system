@@ -19,7 +19,7 @@ jobs:
     #     source ./venv/bin/activate
     - name: Install CLI
       run: |
-        pip install "./cli[dev]"
+        pip install "./cli"
         pip list -v
     - name: Test Tools
       run: |
