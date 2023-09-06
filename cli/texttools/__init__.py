@@ -1,4 +1,3 @@
-from . import compiler, validator
-from .cli import cli
+from . import cli, compiler, validator
 
 __all__ = ["cli", "compiler", "validator"]
