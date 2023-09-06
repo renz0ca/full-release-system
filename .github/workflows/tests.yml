@@ -18,7 +18,9 @@ jobs:
     #     python -m venv venv
     #     source ./venv/bin/activate
     - name: Install CLI
-      run: pip install "./cli[dev]"
+      run: |
+        pip install "./cli[dev]"
+        pip list -v
     - name: Test Tools
       run: |
         validate-text -t "1233 asdasd"
