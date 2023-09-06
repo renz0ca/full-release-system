@@ -20,9 +20,11 @@ jobs:
     - name: Install CLI
       run: |
         pip install "./cli"
+        pip install "./viewer"
         pip list -v
     - name: Test Tools
       run: |
         validate-text -t "1233 asdasd"
         validate-text -t "1233asdasd"
         compile-text -t "1234 asdasd"
+        generate-page -t "hello world"
