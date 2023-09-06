@@ -1,7 +1,7 @@
 import argparse
 
-from ..compiler.RegexCompiler import RegexCompiler
-from ..validator.RegexValidator import RegexValidator
+from ..compiler import RegexCompiler
+from ..validator import RegexValidator
 
 
 def validate_cli():
