@@ -1,11 +1,11 @@
-name: Deploy Release
+name: Deploy Command Line Tools
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  deploy:
+  deploy-cli:
     if: "${{ contains(github.event.pull_request.labels.*.name, 'deploy: cli') }}"
     runs-on: ubuntu-latest
     environment: release
@@ -28,5 +28,5 @@ jobs:
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        repository_url: https://test.pypi.org/legacy/
-        packages_dir: ./cli/dist
+        repository-url: https://test.pypi.org/legacy/
+        packages-dir: ./cli/dist
