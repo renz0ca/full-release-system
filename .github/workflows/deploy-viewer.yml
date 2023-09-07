@@ -1,0 +1,46 @@
+name: Deploy Viewer Website
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  deploy-viewer:
+    if: "${{ contains(github.event.pull_request.labels.*.name, 'deploy: viewer') }}"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11.5'
+    - name: Install Viewer
+      run: |
+        pip install "./viewer"
+    - name: Build Page
+      run: generate-page -t "hello world"
+    - name: Upload Page
+      uses: actions/upload-artifact@v3
+      with:
+        name: viewer
+        path: ./dist/
+  github_pages:
+    needs: deploy-viewer
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
+    - name: Download Viewer artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: viewer
+        path: ./viewer
+    - name: Upload Viewer artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: ./viewer
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
