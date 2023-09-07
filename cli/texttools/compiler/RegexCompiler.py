@@ -33,3 +33,6 @@ class RegexCompiler(Compiler):
 
     def dummy_function():
         pass
+
+    def dummy():
+        pass
