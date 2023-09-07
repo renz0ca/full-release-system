@@ -29,3 +29,6 @@ class PageGenerator:
                 </body>
             </html>
         """
+
+    def dummy_function():
+            pass
