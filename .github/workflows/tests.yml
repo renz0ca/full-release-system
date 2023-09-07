@@ -4,10 +4,13 @@ on:
   push:
     branches: [main]
   pull_request:
+    types: [opened, synchronize, reopened, labeled]
+  workflow_dispatch:
 
 jobs:
   texttools_cli:
     runs-on: ubuntu-latest
+    if: "${{ contains(github.event.pull_request.labels.*.name, 'Schema CLI') }}"
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
