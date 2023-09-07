@@ -1,11 +1,11 @@
-name: Deploy Release
+name: Deploy Command Line Tools
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  deploy:
+  deploy-cli:
     if: "${{ contains(github.event.pull_request.labels.*.name, 'deploy: cli') }}"
     runs-on: ubuntu-latest
     environment: release
